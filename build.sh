@@ -9,7 +9,9 @@ git submodule init
 git submodule sync
 git submodule update
 
+
 set -e 
+set -x
 cd `dirname $0`
 
 if [ ! -e buildroot/.config ]
