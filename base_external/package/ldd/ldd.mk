@@ -22,11 +22,11 @@ LDD_MODULE_SUBDIRS = scull misc-modules
 
 define LDD_INSTALL_TARGET_CMDS
 
-    $(INSTALL) -D -m 0755 $(@D)/scull/scull_load  $(TARGET_DIR)/lib/modules/$(LINUX_VERSION_PROBED)/extra
-	$(INSTALL) -D -m 0755 $(@D)/scull/scull_unload  $(TARGET_DIR)/lib/modules/$(LINUX_VERSION_PROBED)/extra
-	$(INSTALL) -D -m 0755 $(@D)/misc-modules/module_load $(TARGET_DIR)/lib/modules/$(LINUX_VERSION_PROBED)/extra
-	$(INSTALL) -D -m 0755 $(@D)/misc-modules/module_unload $(TARGET_DIR)/lib/modules/$(LINUX_VERSION_PROBED)/extra
-	
+    $(INSTALL) -D -m 0755 $(@D)/scull/scull_load  $(TARGET_DIR)/lib/modules/$(LINUX_VERSION_PROBED)/extra/scull_load
+	$(INSTALL) -D -m 0755 $(@D)/scull/scull_unload  $(TARGET_DIR)/lib/modules/$(LINUX_VERSION_PROBED)/extra/scull_unload
+	$(INSTALL) -D -m 0755 $(@D)/misc-modules/module_load $(TARGET_DIR)/lib/modules/$(LINUX_VERSION_PROBED)/extra/module_load
+	$(INSTALL) -D -m 0755 $(@D)/misc-modules/module_unload $(TARGET_DIR)/lib/modules/$(LINUX_VERSION_PROBED)/extra/module_unload
+
 endef
 # endef
 
