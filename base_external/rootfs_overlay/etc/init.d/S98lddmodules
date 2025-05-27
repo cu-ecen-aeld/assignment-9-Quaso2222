@@ -1,0 +1,48 @@
+#!bin/sh
+case $1 in
+      start)
+            cd /lib/modules/$(uname -r)/extra
+            echo "loading scull module"
+            /lib/modules/$(uname -r)/extra/scull_load
+            if [ $? -ne 0 ]; then
+                echo "Failed to load scull module"
+                exit 1
+            fi 
+            echo "loading hello module"
+            /lib/modules/$(uname -r)/extra/module_load hello
+            if [ $? -ne 0 ]; then
+                echo "Failed to load hello module"
+                exit 1
+            fi   
+            echo "loading faulty module"
+            /lib/modules/$(uname -r)/extra/module_load faulty
+            if [ $? -ne 0 ]; then
+                echo "Failed to load faulty module"
+                exit 1
+            fi      
+            ;;
+      stop)
+           echo "unloading modules"
+            cd /lib/modules/$(uname -r)/extra
+           /lib/modules/$(uname -r)/extra/module_unload hello
+           if [ $? -ne 0 ]; then
+               echo "Failed to unload hello module"
+               exit 1
+           fi
+
+           /lib/modules/$(uname -r)/extra/scull_unload
+           if [ $? -ne 0 ]; then
+               echo "Failed to unload scull module"
+               exit 1
+           fi
+           /lib/modules/$(uname -r)/extra/module_unload faulty
+           if [ $? -ne 0 ]; then
+               echo "Failed to unload faulty module"
+               exit 1
+           fi
+           ;;
+      *)
+            echo "Usage: $0 {start|stop}"
+            exit 1
+esac
+exit 0
