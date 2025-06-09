@@ -19,7 +19,13 @@ case $1 in
             if [ $? -ne 0 ]; then
                 echo "Failed to load faulty module"
                 exit 1
-            fi      
+            fi
+            echo "loading aesdchar module"
+            /lib/modules/$(uname -r)/extra/module_load aesdchar
+            if [ $? -ne 0 ]; then
+                echo "Failed to load aesdchar module"
+                exit 1
+            fi
             ;;
       stop)
            echo "unloading modules"
@@ -38,6 +44,11 @@ case $1 in
            /lib/modules/$(uname -r)/extra/module_unload faulty
            if [ $? -ne 0 ]; then
                echo "Failed to unload faulty module"
+               exit 1
+           fi
+           /lib/modules/$(uname -r)/extra/module_unload aesdchar
+           if [ $? -ne 0 ]; then
+               echo "Failed to unload aesdchar module"
                exit 1
            fi
            ;;

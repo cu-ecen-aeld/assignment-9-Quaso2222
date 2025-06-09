@@ -6,7 +6,7 @@
 ##############################################################
 
 #TODO: Fill up the contents below in order to reference your assignment 3 git contents
-AESD_ASSIGNMENTS_VERSION = '6544f2ebbec51a2a0362a85177c7a3cf77fe455b'
+AESD_ASSIGNMENTS_VERSION = '9c16acf662a19e0a1cd47fb1f0f478dd2403dc15'
 # Note: Be sure to reference the *ssh* repository URL here (not https) to work properly
 # with ssh keys and the automated build/test system.
 # Your site should start with git@github.com:
@@ -30,4 +30,7 @@ define AESD_ASSIGNMENTS_INSTALL_TARGET_CMDS
 	cp $(@D)/server/aesdsocket-start-stop.sh $(TARGET_DIR)/etc/init.d/S99aesdsocket
 endef
 
+AESD_ASSIGNMENTS_MODULE_SUBDIRS = aesd-char-driver
+
+$(eval $(kernel-module))
 $(eval $(generic-package))
